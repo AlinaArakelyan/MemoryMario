@@ -13,7 +13,7 @@ welcomeScreen()
 function welcomeScreen() {
     document.querySelector("body").style.backgroundImage="url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVuxf-7BI2GLqxIHHKWw0lvvAjZDGVyIDMpb3vdeU-8e2C-SLbww&s)"
     const inst = document.getElementById("instructions")
-    inst.innerText= "Welcome to Mario Memory Game! Flip over the tiles to reveal an image underneath. Match up two identical images before the time runs out to win!"
+    inst.innerText= "Welcome to Mario Memory Game! Flip over the tiles to reveal an image underneath. Match up two identical images as fast as you can to get to the leaderboard!"
     
     tiles_won = []
     
@@ -123,7 +123,7 @@ function addNewScore(){
         
         let timeStopped = counter.innerText
         let name = evt.target.name.value
-        let number = (100 - parseInt(timeStopped))
+        let number = (200 - parseInt(timeStopped))
         let level = 1
         
         
@@ -166,6 +166,33 @@ function addNewScore(){
             allScoresDiv.append(eachScore)
             lbContainer.append(allScoresDiv)
             boardDiv.append(lbContainer)
+
+
+            let newButton = document.createElement("button")
+                newButton.innerText="80s-afy"
+                newButton.className="delete_button"
+
+                eachScore.append(newButton)
+
+                newButton.addEventListener("click", (event) => {
+                    let newName = (`${score.name.slice(0,3).toUpperCase()}`)
+                    
+
+                    eachScore.innerText = score.name = newName
+
+                fetch(`http://localhost:3000/scores/${score.id}`, {
+                  method: "PATCH",
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                     name: newName
+                  })
+                })
+                }) 
+
+                
+
 
             let deleteButton = document.createElement("button")
                 deleteButton.innerText = "Delete"
