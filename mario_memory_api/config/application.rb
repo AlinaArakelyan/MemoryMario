@@ -14,6 +14,11 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+# Import the library
+require 'datadog/statsd'
+
+# Create a DogStatsD client instance.
+statsd = Datadog::Statsd.new('localhost', 8125)
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
