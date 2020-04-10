@@ -79,7 +79,7 @@ function viewTile(tile){
             flipped_tiles[0].src === flipped_tiles[1].src) {
                 tiles_won.push(flipped_tiles[0], flipped_tiles[1])
                 tiles_won.forEach((tile) => {tileImg.className="show"}) 
-                if (tiles_won.length === 18) {
+                if (tiles_won.length === 2) {
                     window.clearTimeout(thisMakesTheTimerRun)
                     addNewScore()
                 }
